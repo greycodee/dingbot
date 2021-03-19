@@ -1,4 +1,4 @@
-package main
+package dingbot
 
 import (
 	"crypto/hmac"
