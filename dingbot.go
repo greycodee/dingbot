@@ -19,14 +19,14 @@ type DingBot struct{
 	AccessToken string
 }
 
-type Response struct {
+type response struct {
 	Errcode int64 `json:"errcode"`
 	Errmsg string `json:"errmsg"`
 }
 
-func (bot *DingBot) send(msg message.Message) (Response,error) {
+func (bot *DingBot) Send(msg message.Message) (response,error) {
 	timestamp:=time.Now().UnixNano()/1e6
-	var response Response
+	var response response
 	signStr := sign(timestamp,bot.Secret)
 	dingUrl := fmt.Sprintf("https://oapi.dingtalk.com/robot/send?access_token=%s&timestamp=%d&sign=%s",bot.AccessToken,timestamp,signStr)
 	j,e:=json.Marshal(msg)
